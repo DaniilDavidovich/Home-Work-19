@@ -1,4 +1,4 @@
-import UIKit
+import Foundation
 
 // For process hash
 import CryptoKit
@@ -64,13 +64,13 @@ class ProcessUrl {
         }
         let session = URLSession(configuration: .default)
         session.dataTask(with: url) { data, responce, error in
-            if error != nil {
-                print("Error - \(String(describing: error))")
+            if let error {
+                print("Error - \(error)")
             } else if let responce = responce as? HTTPURLResponse, responce.statusCode == 200 {
-                print("Код ответа от сервера - \(responce)\n")
+                print("Код ответа от сервера - \(responce.statusCode)\n")
                 guard let data = data else { return }
                 let dataAsString = String(data: data, encoding: .utf8)
-                print("Данные пришедшие с сервера: \n\(String(describing: dataAsString))")
+                print("Данные пришедшие с сервера: \n\(dataAsString ?? "Nothing")")
                 
             }
         }.resume()
@@ -86,13 +86,13 @@ class ProcessUrl {
         
         let session = URLSession(configuration: .default)
         session.dataTask(with: url) { data, responce, error in
-            if error != nil {
-                print("Error - \(String(describing: error))")
+            if let error  {
+                print("Error - \(error)")
             } else if let responce = responce as? HTTPURLResponse, responce.statusCode == 200 {
-                print("Код ответа от сервера - \(responce)\n")
+                print("Код ответа от сервера - \(responce.statusCode)\n")
                 guard let data = data else { return }
                 let dataAsString = String(data: data, encoding: .utf8)
-                print("Данные пришедшие с сервера: \n\(String(describing: dataAsString))")
+                print("Данные пришедшие с сервера: \n\(dataAsString ?? "Nothing")")
             }
         }.resume()
     }
